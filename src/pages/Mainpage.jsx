@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { GoSearch } from "react-icons/go";
 import axios from 'axios';
 import axiosInstance from '../utils/axiosSetup'
+import Banner from '../components/Banner';
 function Mainpage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -11,6 +12,7 @@ function Mainpage() {
       const response = await axiosInstance.get(`/search/multi?query=${searchQuery}`);
       setSearchResults(response.data.results || []); // Ensure an empty array if no results
       console.log(response.data.results);
+      console.log(response.data)
     } catch (error) {
       console.log('problem in fetching: ' + error);
     }
@@ -45,6 +47,7 @@ function Mainpage() {
               Array.isArray(searchResults) && searchResults.length > 0 ? (
                 searchResults.map((item, index) => (
                   <h1 key={index} className='px-10 py-3 border-b-2 border-zinc-600 text-black text-lg font-semibold'>
+                  <img src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} className='w-[75px] h-[40px] rounded-xl '></img>
                     {item.original_title || item.name}
                   </h1>
                 ))
@@ -56,6 +59,8 @@ function Mainpage() {
         )
       }
 
+      {/* banner */}
+      <Banner/>
 
     </div>
   )
