@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: gilroy;
+  box-sizing: border-box;
+  
+}
+
+::-webkit-scrollbar{
+  width:0px;
+  height:0px
+}
+
